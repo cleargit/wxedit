@@ -11,9 +11,9 @@ export default{
     effects:{
         *queryList({_},{call,put}){
             console.log('query');
-            // const rsp=yield call(service.getData);
-            // console.log(rsp);
-            yield put({type:'saveList',payload:{listData:'rsp'}})
+            const rsp=yield call(service.getData);
+            console.log(rsp);
+            yield put({type:'saveList',payload:{listData:rsp}})
     }},
     reducers:{
         saveList(state,{payload:{listData}}){

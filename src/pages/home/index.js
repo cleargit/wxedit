@@ -39,9 +39,10 @@ class home extends Component {
                             <a href=''>使用介绍</a>
                         </div>
                         <div className={styles.edit_contain}>
-                            <div className={styles.edit_left}>{listData}</div>
+                            <div className={styles.edit_left} dangerouslySetInnerHTML ={{__html:listData}}></div>
                             <div className={styles.edit_right}>  <Editor /></div>
                         </div>
+                        <div>123</div>
                     </div>
 
                 </div>
