@@ -24,9 +24,6 @@ class Login extends React.Component {
             }
         });
     }
-    handleRegister = (e) => {
-
-    }
     changeRegister = () => {
         this.setState({
             register: !this.state.register
