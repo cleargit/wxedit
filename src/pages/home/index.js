@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './index.less';
 import Editor from './edit';
 import { connect } from 'dva';
-class home extends Component {
+class home extends React.Component {
     componentDidMount(){
         this.queryList();
         console.log('加载组件完成');
