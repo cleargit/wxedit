@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.less';
 import Editor from './edit';
+import Link from 'umi/link';
 import { connect } from 'dva';
 class home extends React.Component {
     componentDidMount(){
@@ -23,7 +24,7 @@ class home extends React.Component {
                             <h3>shamer</h3>
                         </div>
                         <ul className={styles.navbar_info}>
-                            <li><a className="active" aria-current="page" href="/">登录</a></li>
+                            <li><Link to="/login">登录</Link></li>
                             <li><a href="https://www.yuque.com/margox/be/lzwpnr" target="_blank">使用文档</a></li>
                             <li><a href="/demos/basic">关于</a></li>
                         </ul>

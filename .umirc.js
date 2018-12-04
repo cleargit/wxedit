@@ -15,4 +15,10 @@ export default {
       hardSource: false,
     }],
   ],
+  proxy: {
+    '/dev': {
+      target: 'http://localhost:8080/',
+      changeOrigin: true,
+    },
+  },
 }

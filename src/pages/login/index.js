@@ -1,9 +1,10 @@
 import React from 'react';
-import { Form, Icon, Input, Button, } from 'antd';
+import { Form, Icon, Input, Button,message } from 'antd';
 import normal from '../../assets/normal.png';
 import greetin from '../../assets/greetin.png';
 import blindfold from '../../assets/blindfold.png';
 import styles from './login.less';
+import axios from 'axios';
 const FormItem = Form.Item;
 
 class Login extends React.Component {
@@ -20,6 +21,14 @@ class Login extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                console.log(123);
+                axios.post('/dev/user', values)
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        message.error(error.response.statusText);
+                    });
                 console.log('Received values of form: ', values);
             }
         });
@@ -29,7 +38,7 @@ class Login extends React.Component {
             register: !this.state.register
         })
     }
-    
+
     cutechanges = (e) => {
         const targetId = e.target.id;
         console.log(targetId);
@@ -64,7 +73,7 @@ class Login extends React.Component {
                     <img src={blindfold} style={{ display: this.state.blindfold }}></img>
                 </div>
                 <h4 style={{ display: (this.state.register) ? 'none' : 'block' }} >登录</h4>
-                <h4  style={{ display: !(this.state.register) ? 'none' : 'block' }}>注册</h4>
+                <h4 style={{ display: !(this.state.register) ? 'none' : 'block' }}>注册</h4>
                 <Form onSubmit={this.handleSubmit} className={styles.login_form}>
                     <FormItem>
                         {getFieldDecorator('userName', {
@@ -82,7 +91,7 @@ class Login extends React.Component {
                     </FormItem>
                     <FormItem style={{ display: (this.state.register) ? 'block' : 'none' }}>
                         {getFieldDecorator('confrimPassword', {
-                            rules: [{ required: true, message: 'Confirm your Password!' }],
+                            rules: [{ required: this.state.register, message: 'Confirm your Password!' }],
                         })(
                             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Confrim Password" />
                         )}
@@ -99,6 +108,7 @@ class Login extends React.Component {
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
                                 register
                         </Button>
+                        
                             <a style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: '30px' }} onClick={this.changeRegister} >login in</a>
                         </div>
 
