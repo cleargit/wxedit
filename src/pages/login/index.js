@@ -1,6 +1,7 @@
 import React from 'react';
-import { Form, Icon, Input, Button,message } from 'antd';
+import { Form, Icon, Input, Button, message } from 'antd';
 import normal from '../../assets/normal.png';
+import { routerRedux } from 'dva/router';
 import greetin from '../../assets/greetin.png';
 import blindfold from '../../assets/blindfold.png';
 import styles from './login.less';
@@ -21,12 +22,12 @@ class Login extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(123);
                 axios.post('/dev/user', values)
                     .then(function (response) {
                         console.log(response);
                     })
                     .catch(function (error) {
+
                         message.error(error.response.statusText);
                     });
                 console.log('Received values of form: ', values);
@@ -108,7 +109,7 @@ class Login extends React.Component {
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
                                 register
                         </Button>
-                        
+
                             <a style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: '30px' }} onClick={this.changeRegister} >login in</a>
                         </div>
 
