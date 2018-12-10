@@ -3,22 +3,30 @@ import styles from './index.less';
 import Editor from '../compoent/edit';
 import Header from '../compoent/header/header';
 import { connect } from 'dva';
+import Toolbar from '../compoent/toolbar/index';
 class home extends React.Component {
     componentDidMount(){
         this.queryList();
         console.log('加载组件完成');
+    
     }
     queryList=()=>{
         this.props.dispatch({
             type:'home/queryList'
         })
     }
+    componentWillReceiveProps(){
+        const {isLogin}=this.props.location
+        this.props.dispatch({
+            type:'home/login',payload:{isLogin}
+        })
+    }
     render() {
-        const {listData=[]}=this.props.listData;
-        console.log(listData);
+        const {data=[],isLogin}=this.props;
+        console.log(isLogin)
         return (
             <div className={styles.container}>
-            <Header/>
+            <Header isLogin={isLogin}/>
                 <div className={styles.content}>
                     <div className={styles.main}>
                         <h1 className={styles.introduce}>hello</h1>
@@ -28,10 +36,15 @@ class home extends React.Component {
                             <a href=''>使用介绍</a>
                         </div>
                         <div className={styles.edit_contain}>
-                            <div className={styles.edit_left} dangerouslySetInnerHTML ={{__html:listData}}></div>
+                            <div className={styles.edit_left}>
+                            <Toolbar/>
+                                <div  dangerouslySetInnerHTML ={{__html:data}}>
+                              
+                                </div>
+                            </div>
                             <div className={styles.edit_right}>  <Editor /></div>
                         </div>
-                        <div>123</div>
+                        <div></div>
                     </div>
 
                 </div>
@@ -40,10 +53,9 @@ class home extends React.Component {
     }
 }
 function mapStateToProps(state){
-    console.log('mapstateToProps');
-    console.log(state);
     return{
-        listData:state.home.listData
+        data:state.home.data,
+        isLogin:state.home.isLogin
     }
 }
 export default connect(mapStateToProps)(home); 

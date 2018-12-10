@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import normal from '../../assets/normal.png';
-import { routerRedux } from 'dva/router';
 import greetin from '../../assets/greetin.png';
 import blindfold from '../../assets/blindfold.png';
 import styles from './login.less';
@@ -18,17 +17,21 @@ class Login extends React.Component {
             register: false
         }
     }
+   
     handleSubmit = (e) => {
         e.preventDefault();
+        const that=this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                axios.post('/dev/user', values)
+                axios.post('/demo/user/login', values)
                     .then(function (response) {
                         console.log(response);
+                        message.success(response.data.msg)
+                        that.history.push(({ pathname: "/home", isLogin: true})) 
                     })
                     .catch(function (error) {
-
                         message.error(error.response.statusText);
+                        that.history.push(({ pathname: "/home"})) 
                     });
                 console.log('Received values of form: ', values);
             }
@@ -42,7 +45,6 @@ class Login extends React.Component {
 
     cutechanges = (e) => {
         const targetId = e.target.id;
-        console.log(targetId);
         if (targetId == 'userName') {
             this.changeImg('greetin')
         } else if (targetId == 'password' || targetId == 'confrimPassword') {
@@ -50,7 +52,6 @@ class Login extends React.Component {
         } else {
             this.changeImg('normal')
         }
-
     }
     changeImg(target) {
         const a = {}

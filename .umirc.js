@@ -16,7 +16,7 @@ export default {
     }],
   ],
   proxy: {
-    '/dev': {
+    '/demo/': {
       target: 'http://localhost:8080/',
       changeOrigin: true,
     },

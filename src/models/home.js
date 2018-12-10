@@ -5,22 +5,28 @@ export default{
     namespace:'home',
 
     state:{
-        listData:'shamer',
+        isLogin:false,
+        data:'shamer',
     },
 
     effects:{
         *queryList({_},{call,put}){
             console.log('query');
             const rsp=yield call(service.getData);
-            console.log(rsp);
-            yield put({type:'saveList',payload:{listData:rsp}})
+            yield put({type:'saveList',payload:{data:rsp}})
     }},
     reducers:{
-        saveList(state,{payload:{listData}}){
-            console.log(listData);
+        saveList(state,{payload:{data}}){
             return{
                 ...state,
-                listData:{listData}
+                data:data
+            }
+        },
+        login(state,{payload:{isLogin}}){
+            console.log('i access login');
+            return{
+                ...state,
+                isLogin:isLogin
             }
         }
     }

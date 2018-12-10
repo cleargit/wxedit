@@ -7,8 +7,9 @@ import styles from './header.less'
 export default class header extends React.Component {
     constructor(props){
         super(props);
+        console.log(props)
         this.state={
-            isLogin:false
+            
         }
     }
     render() {
@@ -23,6 +24,8 @@ export default class header extends React.Component {
                 <Menu.Divider />
             </Menu>
         );
+        const {isLogin} =this.props;
+        console.log(isLogin)
         return (
             <div className={styles.navbar}>
                 <div className={styles.header}>
@@ -31,9 +34,9 @@ export default class header extends React.Component {
                     </div>
 
                     <ul className={styles.navbar_info}>
-                        <li style={{display:(this.state.isLogin)?'none':'inline'}}><Link to="/login">登录</Link></li>
+                        <li style={{display:(isLogin)?'none':'inline'}}><Link to="/login">登录</Link></li>
                         <li><a>使用文档</a></li>
-                        <li  style={{display:!(this.state.isLogin)?'none':'inline'}}>     <Dropdown overlay={menu} trigger={['click']}>
+                        <li  style={{display:!(isLogin)?'none':'inline'}}>     <Dropdown overlay={menu} trigger={['click']}>
                             <Avatar style={{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }} size="large">
                                 U
                                 </Avatar>
@@ -43,4 +46,5 @@ export default class header extends React.Component {
             </div>
         )
     }
+  
 }
