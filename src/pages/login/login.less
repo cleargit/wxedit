@@ -1,6 +1,7 @@
 @import '../../shadow.less';
 
 body{
+    background-image: url(../../assets/backgroud.png);
     background-color: #f1f1f1;
 }
 .contain{
@@ -11,11 +12,17 @@ body{
     top: 20%;
     padding: 50px 50px 30px;
     border-radius: 5px;
+    
     .shadow_d;
 }
 .login_form{
     margin-top: 10%;
- 
+    :global(.ant-btn){
+      height: 40px;
+    }
+    :global(.ant-input-affix-wrapper){
+        height: 35px;
+    }
 }
 .cute{
     font-size: 20px;
@@ -30,7 +37,10 @@ body{
     }
 }
 h4{
-    color: #1890ff;
+    color: #336a9d;
     font-size: 16px;
     text-align: left;
+}
+button{
+    height: 40px;
 }

@@ -5,28 +5,28 @@ import Header from '../compoent/header/header';
 import { connect } from 'dva';
 import Toolbar from '../compoent/toolbar/index';
 class home extends React.Component {
-    componentDidMount(){
+    componentDidMount() {
         this.queryList();
         console.log('加载组件完成');
-    
+
     }
-    queryList=()=>{
+    queryList = () => {
         this.props.dispatch({
-            type:'home/queryList'
+            type: 'home/queryList'
         })
     }
-    componentWillReceiveProps(){
-        const {isLogin}=this.props.location
+    componentWillReceiveProps() {
+        const { isLogin } = this.props.location
         this.props.dispatch({
-            type:'home/login',payload:{isLogin}
+            type: 'home/login', payload: { isLogin }
         })
     }
     render() {
-        const {data=[],isLogin}=this.props;
+        const { data = [], isLogin } = this.props;
         console.log(isLogin)
         return (
             <div className={styles.container}>
-            <Header isLogin={isLogin}/>
+                <Header isLogin={isLogin} />
                 <div className={styles.content}>
                     <div className={styles.main}>
                         <h1 className={styles.introduce}>hello</h1>
@@ -37,14 +37,24 @@ class home extends React.Component {
                         </div>
                         <div className={styles.edit_contain}>
                             <div className={styles.edit_left}>
-                            <Toolbar/>
-                                <div  dangerouslySetInnerHTML ={{__html:data}}>
-                              
+                                <Toolbar />
+                                <div dangerouslySetInnerHTML={{ __html: data }}>
+
                                 </div>
                             </div>
                             <div className={styles.edit_right}>  <Editor /></div>
                         </div>
-                        <div></div>
+                        <div className={styles.footer}>
+                        <div className={styles.footer_left}>
+                            <a>©2017-2018 Braft Editor |</a>
+                        </div>
+                            <div className={styles.footer_right}>
+                                <a>作者博客</a>
+                                <a>微博</a>
+                                <a>GitHub</a>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
@@ -52,10 +62,10 @@ class home extends React.Component {
         )
     }
 }
-function mapStateToProps(state){
-    return{
-        data:state.home.data,
-        isLogin:state.home.isLogin
+function mapStateToProps(state) {
+    return {
+        data: state.home.data,
+        isLogin: state.home.isLogin
     }
 }
 export default connect(mapStateToProps)(home); 

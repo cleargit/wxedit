@@ -6,7 +6,7 @@ export default{
 
     state:{
         isLogin:false,
-        data:'shamer',
+        data:{},
     },
 
     effects:{

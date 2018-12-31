@@ -77,7 +77,7 @@ class Login extends React.Component {
                 <h4 style={{ display: (this.state.register) ? 'none' : 'block' }} >登录</h4>
                 <h4 style={{ display: !(this.state.register) ? 'none' : 'block' }}>注册</h4>
                 <Form onSubmit={this.handleSubmit} className={styles.login_form}>
-                    <FormItem>
+                    <FormItem >
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
@@ -99,19 +99,19 @@ class Login extends React.Component {
                         )}
                     </FormItem>
                     <FormItem>
-                        <div style={{ display: (this.state.register) ? 'none' : 'inline' }} >
-                            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                        <div style={{ display: (this.state.register) ? 'none' : 'block',textAlign:'right'  }} >
+                            <Button  type="primary" htmlType="submit" style={{ width: '100%' }}>
                                 Log in
                         </Button>
                             <a href="">Forgot password</a>
                             <a style={{ marginLeft: '20px' }} onClick={this.changeRegister}>register now!</a>
                         </div>
-                        <div style={{ display: !(this.state.register) ? 'none' : 'inline' }}>
+                        <div style={{ display: !(this.state.register) ? 'none' : 'block',textAlign:'right' }}>
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
                                 register
                         </Button>
 
-                            <a style={{ display: 'flex', flexDirection: 'row-reverse', marginRight: '30px' }} onClick={this.changeRegister} >login in</a>
+                            <a style={{textAlign:'right',marginRight: '30px' }} onClick={this.changeRegister} >login in</a>
                         </div>
 
                     </FormItem>
